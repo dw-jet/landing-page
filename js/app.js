@@ -16,6 +16,7 @@
 /**
  * Define Global Variables
 */
+const navMenu = document.querySelector('.navbar__menu');
 const sections = document.querySelectorAll('[data-nav]');
 let currentSection = sections[0];
 
@@ -41,7 +42,7 @@ const scrollToSelector = (selector) => {
 // * Begin Main Functions
 
 
-// build the nav
+// build the nav from the sections in the document
 const buildNavListItems = () => {
   const navbarUl = document.getElementById('navbar__list');
   const fragment = document.createDocumentFragment();
@@ -55,7 +56,8 @@ const buildNavListItems = () => {
   navbarUl.appendChild(fragment);
 }
 
-// Add class 'active' to section when near top of viewport
+// Find which section should be active by starting at the end and finding the smallest
+// bounding bottom that hasn't been scrolled past yet.
 const findActive = () => {
   const lastSection = sections.length - 1;
   let pick = sections[lastSection];
@@ -67,11 +69,12 @@ const findActive = () => {
       pick = section;
     }
   }
+  // Only update the DOM if we need to change the class
   if (pick != currentSection) { toggleActiveSection(pick); }
 }
 
-// Scroll to anchor ID
-const navMenu = document.querySelector('.navbar__menu');
+// Listen for click events on the menu bar
+// and if they hit the a then activate the scroll
 navMenu.addEventListener('click', function(event) {
   event.preventDefault();
   if (event.target.nodeName === 'A') {
