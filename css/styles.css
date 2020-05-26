@@ -113,6 +113,13 @@ section {
     z-index: 5;
 }
 
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .navbar__menu li a {
+        font-size: 75%;
+    }
+}
+
 /* Footer Styles */
 .page__footer {
     background: #000;
