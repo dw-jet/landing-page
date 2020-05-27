@@ -37,6 +37,14 @@ const scrollToSelector = (selector) => {
     behavior: 'smooth'
   });
 }
+
+const setActiveNavLink = (link) => {
+  const navLinks = navMenu.querySelectorAll("li");
+  for (item of navLinks) {
+    item.classList.remove("navbar--state-active")
+  }
+  link.classList.add("navbar--state-active")
+}
 // * End Helper Functions
 
 // * Begin Main Functions
@@ -49,6 +57,7 @@ const buildNavListItems = () => {
 
   for (const section of sections) {
     const item = document.createElement('li');
+    item.classList.add("menu__link")
     item.innerHTML = `<a href="#${section.id}">${section.dataset.nav}&nbsp</a>`;
     fragment.appendChild(item);
   }
@@ -81,6 +90,7 @@ navMenu.addEventListener('click', function(event) {
     const targetHref = event.target.href;
     const scrollTarget = targetHref.substring(targetHref.lastIndexOf("#"));
     scrollToSelector(scrollTarget);
+    setActiveNavLink(event.target.parentNode);
   }
 })
 

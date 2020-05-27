@@ -65,43 +65,50 @@ section {
 
 /* Navigation Styles*/
 .navbar__menu ul {
+    display: flex;
     padding-left: 0;
     margin: 0;
     text-align: right;
+    align-items: right;
+    justify-content: right;
 }
 
 .navbar__menu li {
-    display: inline-block;
+    display: flex;
     padding: 20px 10px 20px;
+    align-content: center;
 }
 
-.navbar__menu li a {
+.navbar--state-active {
+    background: #333;
+    transition: ease 0.3s all;
+}
+
+.navbar--state-active a {
+    color: #fff !important;
+}
+
+.navbar__menu .menu__link {
+    padding: 10px 2em 10px;
+    font-weight: bold;
+    text-decoration: none;
+
+    align-items: center;
+}
+
+.navbar__menu .menu__link a {
     color: #333;
     font-size: 1.15em;
     text-decoration: none;
 }
 
-.navbar__menu li a:hover {
-    background-color: #333;
-    color: #cc1;
-}
-
-.navbar--state-active {
-    background-color: #cc1;
-}
-
-.navbar__menu .menu__link {
-    display: block;
-    padding: 1em;
-    font-weight: bold;
-    text-decoration: none;
-    color: #000;
-}
-
 .navbar__menu .menu__link:hover {
     background: #333;
-    color: #fff;
     transition: ease 0.3s all;
+}
+
+.navbar__menu .menu__link:hover a {
+    color: #fff;
 }
 
 /* Header Styles */
@@ -115,8 +122,8 @@ section {
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-    .navbar__menu li a {
-        font-size: 75%;
+    .navbar__menu li {
+        font-size: 50%;
     }
 }
 
